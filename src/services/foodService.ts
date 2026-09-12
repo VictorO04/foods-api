@@ -53,3 +53,19 @@ export const createFood = (data: FoodType) => {
 
     return Food.create(data);
 }
+
+export const deleteFood = async (id: string) => {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        throw new AppError("Invalid ID format", 400);
+    }
+
+    const food = await Food.findById(id);
+
+    if (!food) {
+        throw new AppError(`Food with ID ${id} not found`, 404);
+    }
+
+    await Food.deleteOne({ _id: id });
+
+    return food;
+}

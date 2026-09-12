@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { findFoods, findFoodById, createFood } from "../services/foodService.js";
+import { findFoods, findFoodById, createFood, deleteFood } from "../services/foodService.js";
 
 export const getFoods = async (req: Request, res: Response) => {
     const { name } = req.query;
@@ -22,10 +22,19 @@ export const getFoodById = async (req: Request, res: Response) => {
 
 export const postFood = async (req: Request, res: Response) => {
     const { name, description, category } = req.body;
-    
+
     await createFood({ name, description, category });
 
     res.status(201).json({
         message: `${name} created`
+    });
+}
+
+export const deleteFoodController = async (req: Request, res: Response) => {
+    const food = await deleteFood(String(req.params.id));
+
+    res.status(200).json({
+        message: `${food.name} deleted`,
+        data: food
     });
 }
