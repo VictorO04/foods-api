@@ -23,10 +23,11 @@ export const getFoodById = async (req: Request, res: Response) => {
 export const postFood = async (req: Request, res: Response) => {
     const { name, description, category } = req.body;
 
-    await createFood({ name, description, category });
+    const food = await createFood({ name, description, category });
 
     res.status(201).json({
-        message: `${name} created`
+        message: `${name} created`,
+        data: food
     });
 }
 

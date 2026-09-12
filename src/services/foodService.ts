@@ -37,7 +37,7 @@ const categories = [
         "fast food"
     ];
 
-export const createFood = (data: FoodType) => {
+export const createFood = async (data: FoodType) => {
     const requiredFields: (keyof FoodType)[] = ["name", "category"];
     const missingFields = requiredFields.filter(field => !data[field]);
     
@@ -51,7 +51,9 @@ export const createFood = (data: FoodType) => {
         throw new AppError(`Invalid category. Allowed categories: ${categories.join(", ")}`, 400);
     }
 
-    return Food.create(data);
+    const food = await Food.create(data);
+
+    return food;
 }
 
 export const deleteFood = async (id: string) => {
