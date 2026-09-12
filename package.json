@@ -1,15 +1,15 @@
 {
   "name": "foods-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
+  "description": "REST API for managing food data, built with TypeScript, Express and MongoDB using Mongoose",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "cls && tsx watch src/server.ts",
     "build": "npx tsc",
     "start": "node ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node", "mongodb", "express", "typescript", "foods"],
+  "author": "Victor",
   "license": "MIT",
   "type": "module",
   "dependencies": {
