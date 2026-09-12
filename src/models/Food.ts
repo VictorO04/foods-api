@@ -6,11 +6,16 @@ export interface Food {
     category: string
 }
 
-const foodSchema = new mongoose.Schema<Food>({
-    name: { type: String, required: true },
-    description: { type: String, default: null },
-    category: { type: String, required: true },
-});
+const foodSchema = new mongoose.Schema<Food>(
+    {
+        name: { type: String, required: true },
+        description: { type: String, default: null },
+        category: { type: String, required: true },
+    },
+    {
+        versionKey: false
+    }
+);
 
 const FoodModel = mongoose.model("Food", foodSchema);
 export default FoodModel;
